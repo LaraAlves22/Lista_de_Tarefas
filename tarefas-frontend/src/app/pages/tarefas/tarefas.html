@@ -1,0 +1,77 @@
+<h2>Lista de Tarefas</h2>
+
+<!-- ➕ NOVA TAREFA -->
+<div>
+  <input
+    type="text"
+    [(ngModel)]="novaTarefa.titulo"
+    placeholder="Nova tarefa"
+  />
+
+  <button (click)="adicionarTarefa()">
+    Adicionar
+  </button>
+</div>
+
+<hr />
+
+<!-- ✏️ EDIÇÃO -->
+<div *ngIf="editando">
+  <h3>Editar Tarefa</h3>
+
+  <input
+    type="text"
+    [(ngModel)]="editando.titulo"
+  />
+
+  <label>
+    <input
+      type="checkbox"
+      [(ngModel)]="editando.concluida"
+    />
+    Concluída
+  </label>
+
+  <br />
+
+  <button (click)="salvarEdicao()">
+    Salvar
+  </button>
+
+  <button (click)="cancelarEdicao()">
+    Cancelar
+  </button>
+</div>
+
+<hr />
+
+<!-- 📋 LISTA DE TAREFAS -->
+<ul>
+  <li *ngFor="let t of tarefas">
+
+    <!-- TÍTULO -->
+    <span [style.text-decoration]="t.concluida ? 'line-through' : 'none'">
+      {{ t.titulo }}
+    </span>
+
+    <!-- STATUS -->
+    <span *ngIf="t.concluida"> ✔ Concluída </span>
+    <span *ngIf="!t.concluida"> ❌ Pendente </span>
+
+    <!-- BOTÃO CONCLUIR -->
+    <button (click)="concluirTarefa(t)" [disabled]="t.concluida">
+      ✔ Concluir
+    </button>
+
+    <!-- BOTÃO EDITAR -->
+    <button (click)="editar(t)">
+      ✏️ Editar
+    </button>
+
+    <!-- BOTÃO DELETAR -->
+    <button (click)="deletarTarefa(t.id)">
+      🗑 Deletar
+    </button>
+
+  </li>
+</ul>
