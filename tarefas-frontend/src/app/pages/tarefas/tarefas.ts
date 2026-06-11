@@ -2,6 +2,8 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TarefaService } from '../../services/tarefa.service';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tarefas',
@@ -18,7 +20,9 @@ export class TarefasComponent implements OnInit {
 
   constructor(
     private tarefaService: TarefaService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -73,4 +77,9 @@ export class TarefasComponent implements OnInit {
   cancelarEdicao() {
     this.editando = null;
   }
+
+  sair() {
+  this.authService.logout();
+  this.router.navigate(['/login']);
+}
 }

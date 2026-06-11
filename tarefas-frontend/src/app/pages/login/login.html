@@ -1,0 +1,32 @@
+<div class="login-container">
+  <div class="login-box">
+
+    <h2>{{ modo === 'login' ? 'Entrar' : 'Registrar' }}</h2>
+
+    <div *ngIf="erro" class="erro">{{ erro }}</div>
+
+    <input
+      type="text"
+      [(ngModel)]="usuario.username"
+      placeholder="Usuário"
+    />
+
+    <input
+      type="password"
+      [(ngModel)]="usuario.password"
+      placeholder="Senha"
+    />
+
+    <button (click)="modo === 'login' ? entrar() : registrar()">
+      {{ modo === 'login' ? 'Entrar' : 'Registrar' }}
+    </button>
+
+    <p>
+      {{ modo === 'login' ? 'Não tem conta?' : 'Já tem conta?' }}
+      <a (click)="modo = modo === 'login' ? 'registrar' : 'login'">
+        {{ modo === 'login' ? 'Registrar' : 'Voltar ao login' }}
+      </a>
+    </p>
+
+  </div>
+</div>

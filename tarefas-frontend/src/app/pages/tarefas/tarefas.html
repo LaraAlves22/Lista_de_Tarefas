@@ -1,77 +1,44 @@
-<h2>Lista de Tarefas</h2>
+<!-- HEADER -->
+<div class="header">
+  <h2>Lista de Tarefas</h2>
+  <button class="btn-sair" (click)="sair()">Sair</button>
+</div>
 
 <!-- ➕ NOVA TAREFA -->
-<div>
+<div class="card-adicionar">
   <input
     type="text"
     [(ngModel)]="novaTarefa.titulo"
     placeholder="Nova tarefa"
   />
-
-  <button (click)="adicionarTarefa()">
-    Adicionar
-  </button>
+  <button (click)="adicionarTarefa()">Adicionar</button>
 </div>
 
 <hr />
 
 <!-- ✏️ EDIÇÃO -->
-<div *ngIf="editando">
+<div class="card-edicao" *ngIf="editando">
   <h3>Editar Tarefa</h3>
-
-  <input
-    type="text"
-    [(ngModel)]="editando.titulo"
-  />
-
+  <input type="text" [(ngModel)]="editando.titulo" />
   <label>
-    <input
-      type="checkbox"
-      [(ngModel)]="editando.concluida"
-    />
+    <input type="checkbox" [(ngModel)]="editando.concluida" />
     Concluída
   </label>
-
   <br />
-
-  <button (click)="salvarEdicao()">
-    Salvar
-  </button>
-
-  <button (click)="cancelarEdicao()">
-    Cancelar
-  </button>
+  <<button class="btn-salvar" (click)="salvarEdicao()">Salvar</button>
+<button class="btn-cancelar" (click)="cancelarEdicao()">Cancelar</button>
 </div>
 
 <hr />
 
-<!-- 📋 LISTA DE TAREFAS -->
+<!-- 📋 LISTA -->
 <ul>
   <li *ngFor="let t of tarefas">
-
-    <!-- TÍTULO -->
-    <span [style.text-decoration]="t.concluida ? 'line-through' : 'none'">
-      {{ t.titulo }}
-    </span>
-
-    <!-- STATUS -->
+    <span [style.text-decoration]="t.concluida ? 'line-through' : 'none'">{{ t.titulo }}</span>
     <span *ngIf="t.concluida"> ✔ Concluída </span>
     <span *ngIf="!t.concluida"> ❌ Pendente </span>
-
-    <!-- BOTÃO CONCLUIR -->
-    <button (click)="concluirTarefa(t)" [disabled]="t.concluida">
-      ✔ Concluir
-    </button>
-
-    <!-- BOTÃO EDITAR -->
-    <button (click)="editar(t)">
-      ✏️ Editar
-    </button>
-
-    <!-- BOTÃO DELETAR -->
-    <button (click)="deletarTarefa(t.id)">
-      🗑 Deletar
-    </button>
-
+    <button (click)="concluirTarefa(t)" [disabled]="t.concluida">✔ Concluir</button>
+    <button (click)="editar(t)">✏️ Editar</button>
+    <button (click)="deletarTarefa(t.id)">🗑 Deletar</button>
   </li>
 </ul>

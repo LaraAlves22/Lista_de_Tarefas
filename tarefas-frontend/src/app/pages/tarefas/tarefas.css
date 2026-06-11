@@ -13,18 +13,43 @@
   margin: 0 auto;
 }
 
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
 h2 {
   font-size: 2rem;
   font-weight: 700;
   color: #ffffff;
-  text-align: center;
-  margin-bottom: 1.5rem;
   letter-spacing: -0.5px;
   text-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
-/* Card de adicionar */
-div:first-of-type {
+.btn-sair {
+  padding: 0.5rem 1.1rem;
+  background: rgba(255,255,255,0.15);
+  color: #ffffff;
+  border: 2px solid rgba(255,255,255,0.4);
+  border-radius: 10px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+  backdrop-filter: blur(4px);
+}
+
+.btn-sair:hover {
+  background: rgba(255,255,255,0.28);
+  border-color: rgba(255,255,255,0.7);
+}
+
+/* CARD ADICIONAR */
+.card-adicionar {
   background: #ffffff;
   border-radius: 20px;
   padding: 1.25rem 1.5rem;
@@ -34,8 +59,28 @@ div:first-of-type {
   align-items: center;
 }
 
-/* Card de edição */
-div:nth-of-type(2) {
+.card-adicionar > button {
+  padding: 0.75rem 1.25rem;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 4px 15px rgba(102,126,234,0.4);
+}
+
+.card-adicionar > button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(102,126,234,0.5);
+}
+
+/* CARD EDIÇÃO */
+.card-edicao {
   background: #ffffff;
   border-radius: 20px;
   padding: 1.25rem 1.5rem;
@@ -53,7 +98,46 @@ h3 {
   letter-spacing: 0.3px;
 }
 
-/* Inputs de texto */
+.card-edicao .btn-salvar {
+  padding: 0.65rem 1.25rem;
+  background: linear-gradient(135deg, #43e97b, #38f9d7);
+  color: #0d5c3a;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 3px 10px rgba(67,233,123,0.3);
+  align-self: flex-start;
+}
+
+.card-edicao .btn-salvar:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 15px rgba(67,233,123,0.45);
+}
+
+.card-edicao .btn-cancelar {
+  padding: 0.65rem 1.25rem;
+  background: #f39494;
+  color: #270c0797;
+  border: 2px solid #e0e0f0;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  align-self: flex-start;
+}
+
+.card-edicao .btn-cancelar:hover {
+  background: #e8e8f8;
+  border-color: #c8c8e8;
+}
+
+/* Inputs */
 input[type="text"] {
   flex: 1;
   padding: 0.75rem 1rem;
@@ -103,68 +187,6 @@ hr {
   margin: 1rem 0;
 }
 
-/* Botão Adicionar */
-div:first-of-type > button {
-  padding: 0.75rem 1.25rem;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  color: #ffffff;
-  border: none;
-  border-radius: 12px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  font-family: 'Inter', sans-serif;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: transform 0.15s, box-shadow 0.15s;
-  box-shadow: 0 4px 15px rgba(102,126,234,0.4);
-}
-
-div:first-of-type > button:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(102,126,234,0.5);
-}
-
-/* Botão Salvar */
-div:nth-of-type(2) > button:first-of-type {
-  padding: 0.65rem 1.25rem;
-  background: linear-gradient(135deg, #43e97b, #38f9d7);
-  color: #0d5c3a;
-  border: none;
-  border-radius: 10px;
-  font-size: 0.88rem;
-  font-weight: 600;
-  font-family: 'Inter', sans-serif;
-  cursor: pointer;
-  transition: transform 0.15s, box-shadow 0.15s;
-  box-shadow: 0 3px 10px rgba(67,233,123,0.3);
-  align-self: flex-start;
-}
-
-div:nth-of-type(2) > button:first-of-type:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 5px 15px rgba(67,233,123,0.45);
-}
-
-/* Botão Cancelar */
-div:nth-of-type(2) > button:last-of-type {
-  padding: 0.65rem 1.25rem;
-  background: #f39494;
-  color: #270c0797;
-  border: 2px solid #e0e0f0;
-  border-radius: 10px;
-  font-size: 0.88rem;
-  font-weight: 600;
-  font-family: 'Inter', sans-serif;
-  cursor: pointer;
-  transition: background 0.15s, border-color 0.15s;
-  align-self: flex-start;
-}
-
-div:nth-of-type(2) > button:last-of-type:hover {
-  background: #e8e8f8;
-  border-color: #c8c8e8;
-}
-
 /* Lista */
 ul {
   list-style: none;
@@ -191,7 +213,6 @@ li:hover {
   transform: translateX(3px);
 }
 
-/* Título da tarefa */
 li > span:first-of-type {
   flex: 1;
   font-size: 0.95rem;
@@ -200,21 +221,11 @@ li > span:first-of-type {
   min-width: 120px;
 }
 
-/* Badge de status */
 li > span:nth-of-type(2) {
   font-size: 0.75rem;
   font-weight: 600;
   padding: 0.25rem 0.6rem;
   border-radius: 20px;
-}
-
-li:has(span:nth-of-type(2):not(:empty)) span:nth-of-type(2) {
-  background: #eef8f1;
-  color: #2e7d52;
-}
-
-/* Pendente */
-li > span:nth-of-type(2) {
   background: #fff0f3;
   color: #c0392b;
 }
