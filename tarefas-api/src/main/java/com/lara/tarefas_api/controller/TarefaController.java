@@ -3,10 +3,10 @@ package com.lara.tarefas_api.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.RequestMethod;
+
 import com.lara.tarefas_api.model.Tarefa;
 import com.lara.tarefas_api.service.TarefaService;
-
+import org.springframework.security.core.Authentication;
 import java.util.List;
 
 @RestController
@@ -24,14 +24,22 @@ public class TarefaController {
     private TarefaService tarefaService;
 
     @GetMapping
-    public List<Tarefa> listarTarefas() {
-        return tarefaService.listarTarefas();
-    }
+public List<Tarefa> listarTarefas(Authentication authentication) {
 
-    @PostMapping
-    public Tarefa criarTarefa(@RequestBody Tarefa tarefa) {
-        return tarefaService.criarTarefa(tarefa);
-    }
+    return tarefaService
+            .listarTarefas(authentication.getName());
+}
+
+@PostMapping
+public Tarefa criarTarefa(
+        @RequestBody Tarefa tarefa,
+        Authentication authentication) {
+
+    System.out.println("Usuário autenticado: " + authentication.getName());
+
+    return tarefaService
+            .criarTarefa(tarefa, authentication.getName());
+}
 
     @GetMapping("/{id}")
     public Tarefa buscarPorId(@PathVariable Long id) {

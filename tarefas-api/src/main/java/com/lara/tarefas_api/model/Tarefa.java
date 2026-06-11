@@ -1,10 +1,9 @@
 package com.lara.tarefas_api.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "tarefas")
@@ -17,13 +16,19 @@ public class Tarefa {
     private String titulo;
     private boolean concluida;
 
+    @ManyToOne
+    @JoinColumn(name = "usuario_id", nullable = false)
+    @JsonIgnore
+    private Usuario usuario;
+
     public Tarefa() {
     }
 
-    public Tarefa(Long id, String titulo, boolean concluida) {
+    public Tarefa(Long id, String titulo, boolean concluida, Usuario usuario) {
         this.id = id;
         this.titulo = titulo;
         this.concluida = concluida;
+        this.usuario = usuario;
     }
 
     public Long getId() {
@@ -38,6 +43,10 @@ public class Tarefa {
         return concluida;
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -48,5 +57,9 @@ public class Tarefa {
 
     public void setConcluida(boolean concluida) {
         this.concluida = concluida;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

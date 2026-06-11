@@ -8,18 +8,29 @@ import org.springframework.stereotype.Service;
 
 import com.lara.tarefas_api.model.Tarefa;
 import com.lara.tarefas_api.repository.TarefaRepository;
+import com.lara.tarefas_api.repository.UsuarioRepository;
+import com.lara.tarefas_api.model.Usuario;
 
 @Service
 public class TarefaService {
 
-     @Autowired
+    @Autowired
     private TarefaRepository repository;
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
-    public List<Tarefa> listarTarefas() {
-        return repository.findAll();
-    }
+    public List<Tarefa> listarTarefas(String username) {
+        return repository.findByUsuarioUsername(username);
+    }   
 
-    public Tarefa criarTarefa(Tarefa tarefa) {
+    public Tarefa criarTarefa(Tarefa tarefa, String username) {
+
+        Usuario usuario = usuarioRepository
+            .findByUsername(username)
+            .orElseThrow();
+
+        tarefa.setUsuario(usuario);
+
         return repository.save(tarefa);
     }
 
